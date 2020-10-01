@@ -1,0 +1,123 @@
+---
+title: "Introduction to R: clear and easy
+output:
+  pdf_document: default
+  html_notebook: default
+  html_document: default
+---
+
+Here we look at some summaries of student ratings of teaching.
+
+This is summary data that [Andrew Rosen](https://asrosen.com) downloaded from
+<https://www.ratemyprofessors.com> for an analysis he reported in [a 2018
+paper](https://asrosen.com/wp-content/uploads/2018/07/postprint_rmp-1.pdf).
+The data file here is from the [supplementary
+material](https://www.tandfonline.com/doi/suppl/10.1080/02602938.2016.1276155);
+it has the average rating across academic discipline for all professors in a
+particular discipline who have more than 20 ratings.
+
+Quoting from the paper above:
+
+> Students on RateMyProfessors rate professors based on three main key
+> criteria: clarity, helpfulness, and easiness. These criteria are mandatory
+> fields when a review is submitted, and the rating scale ranges from 1 to 5 in
+> integer increments with 1 being the worst rating and 5 being the best rating.
+> Professors are then assigned an overall quality score that is simply the
+> average of their clarity and helpfulness scores.
+
+If you want to run this notebook on your laptop, you should download the
+[rate_my_course.csv](rate_my_course.csv) file to the same directory as this
+notebook.
+
+
+Now to R. We first load the data from the data file into memory.
+
+```{r}
+ratings <- read.csv('rate_my_course.csv')
+```
+
+We will see a lot more on this soon, but "ratings" is the name we have given to this *table* of data, in memory.  R calls this table a *data frame*.
+
+Each row of the table (data frame) gives the mean ratings for all professors
+in a given discipline; thus there is one row per discipline.
+
+We can ask R for a spreadsheet display of the data with this command:
+
+```{r}
+View(ratings)
+```
+
+If we don't need the whole spreadsheet view, we can see the first six rows of
+this table, with this command:
+
+```{r}
+head(ratings)
+```
+
+Given the background above, the column names are self-explanatory:
+
+* Discipline
+* Number of Professors
+* Helpfulness
+* Helpfulness
+* Overall Quality
+* Easiness
+
+Now we might want to explore further.  For example, we might be interested in the distribution of the average scores for Helpfulness.
+
+We called our table (data frame) `ratings`.  Now we want the `Helpfulness` column from this table.  We get a column from the table by using the dollar sign like this: `ratings$Helpfulness`.  This means, "give me the `Helpfulness` column from the `ratings` table.
+
+For example, we can do a *histogram* of the `Helpfulness` column values like this:
+
+```{r}
+hist(ratings$Helpfulness)
+```
+
+Now your turn.  What command do you think you would need to do histogram of the `Easiness` column of the `ratings` table?  Look at the code chunk above, and then replace the `...` in the code below to do a histogram of the `Easiness` values.
+
+```{r}
+hist(...)
+```
+
+We might want to some basic statistics on the column values.  For example, to get the mean of the `Helpfulness` column, we could use:
+
+```{r}
+mean(ratings$Helpfulness)
+```
+
+Maybe we are interested in the standard deviation?
+
+```{r}
+sd(ratings$Helpfulness)
+```
+
+Now a speculation.  What do you think will be the relationship between the
+ratings for `Helpfulness` and the ratings for `Easiness`?  Are they different, and unrelated things?  Would teachers on harder courses be more helpful?   What do you think?
+
+Let's have a look:
+
+```{r}
+plot(ratings$Helpfulness, ratings$Easiness)
+```
+
+Why might that be?
+
+As you remember from last year, one way of assessing whether the points are close to a straight line, with a positive or negative slope, is to use *correlation*, to *test* for the relationship:
+
+```{r}
+cor.test(ratings$Helpfulness, ratings$Easiness)
+```
+
+Now your turn.  What do you think the relationship will be between `Clarity` and `Easiness`?
+
+Use the code above to see if you can work out how to do a plot of the `Clarity` values from the `ratings` table on the x-axis, and the `Easiness` values from the `ratings` table on the y-axis.  Have a look at the plot above to see which one goes first in your `plot` command.
+
+```{r}
+plot(...)
+```
+
+Now see if you can show the result of the correlation test between the `Clarity` values of `ratings` and the `Easiness` values.
+
+```{r}
+...
+```
