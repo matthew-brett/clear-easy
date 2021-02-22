@@ -6,6 +6,39 @@ output:
   html_document: default
 ---
 
+## The notebook
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook.
+
+The notebook allows us to mix text (like this) and code in *chunks* (see below).
+
+You can add a new chunk by clicking the *Insert Chunk* button on the toolbar or
+by pressing *Cmd+Option+I*.
+
+Here is a *code chunk*:
+
+```{r}
+a <- 10
+```
+
+Run the code chunk with the Run arrow at the right of the chunk, or press
+*Cmd-Shift-Enter* while the cursor is inside the chunk.
+
+You should now know that you can read the chunk above as "The variable 'a' gets
+the value 10."
+
+You can show the result by putting the new variable on a line on its own in a
+chunk like this:
+
+```{r}
+a
+```
+
+Now notice the stuff at the top and the bottom of the code chunk.  The starting
+characters that tell the notebook about the start and end of a code chunk are
+three *backtick* characters.  Try deleting a backtick in the start and end of
+the chunk above and see what happens.  Then put the backtick back, to fix.
+
 Here we look at some summaries of student ratings of teaching.
 
 This is summary data that [Andrew Rosen](https://asrosen.com) downloaded from
@@ -102,7 +135,7 @@ plot(ratings$Helpfulness, ratings$Easiness)
 
 Why might that be?
 
-As you remember from last year, one way of assessing whether the points are close to a straight line, with a positive or negative slope, is to use *correlation*, to *test* for the relationship:
+One way of assessing whether the points are close to a straight line, with a positive or negative slope, is to use *correlation*, to *test* for the relationship:
 
 ```{r}
 cor.test(ratings$Helpfulness, ratings$Easiness)
